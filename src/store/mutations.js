@@ -8,7 +8,7 @@ export default {
   getDailyQuote: (state, quote) => {
     state.dailyQuote = quote
   },
-  appendQuote: (state, { species, quote }) => {
-    state[species].push(quote)
+  appendQuote: (state, { quote }) => {
+    state.allQuotes.push(quote)
   }
 }

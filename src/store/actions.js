@@ -3,8 +3,9 @@ export default {
     commit('appendPet', payload)
   },
   addQuote: ({ commit }, payload) => {
-    var url = 'http://localhost:3000/quote'
+    var url = process.env.VUE_APP_API_ENDPOINT + '/quotes'
     var data = payload
+    console.log(data)
     fetch(url, {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
@@ -13,10 +14,13 @@ export default {
       }
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response))
+      .then(response =>
+        commit('appendQuote', response)
+        // console.log('Success:', response)
+      )
   },
   refreshQuotes: ({ commit }) => {
-    fetch('http://localhost:3000/quotes', {
+    fetch(process.env.VUE_APP_API_ENDPOINT + '/quotes', {
       method: 'get'
     })
       .then((response) => {
@@ -28,7 +32,7 @@ export default {
       })
   },
   refreshDailyQuote: ({ commit }) => {
-    fetch('http://localhost:3000/dailyQuote', {
+    fetch(process.env.VUE_APP_API_ENDPOINT + '/dailyQuote', {
       method: 'get'
     })
       .then((response) => {

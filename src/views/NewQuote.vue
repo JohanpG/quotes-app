@@ -7,7 +7,7 @@
 
       <b-form @submit.prevent="handleSubmit">
         <b-card bg-variant="light">
-          <b-form-group id="exampleInputGroup2" label="Author's Name:" label-for="exampleInput2">
+          <b-form-group id="exampleInputGroup1" label="Author's Name:" label-for="exampleInput1">
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -23,7 +23,7 @@
               required
               placeholder="Enter To Name" />
           </b-form-group>
-          <b-form-group id="exampleInputGroup2" label="Quote:" label-for="exampleInput2">
+          <b-form-group id="exampleInputGroup3" label="Quote:" label-for="exampleInput3">
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -31,7 +31,7 @@
               required
               placeholder="Enter quote" />
           </b-form-group>
-          <b-form-group id="exampleInputGroup2" label="Quote's Date:" label-for="exampleInput2">
+          <b-form-group id="exampleInputGroup4" label="Quote's Date:" label-for="exampleInput4">
             <b-form-input
               id="exampleInput2"
               type="date"
@@ -70,18 +70,16 @@ export default {
   },
   methods: {
     ...mapActions([
-      'addPet',
+      'addQuote',
       'refreshQuotes'
     ]),
     handleSubmit() {
       const { author, to, quote, date } = this.formData
       const payload = {
-        quote: {
-          author,
-          to,
-          quote,
-          date
-        }
+        author,
+        to,
+        quote,
+        date
       }
       this.addQuote(payload)
 
