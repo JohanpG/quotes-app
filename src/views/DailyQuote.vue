@@ -26,11 +26,11 @@ export default {
     return {}
   },
   computed: {
+  ...mapState([
+    'dailyQuote'
+  ]),
   ...mapGetters([
     'getCurrentDate'
-    ]),
-    ...mapState([
-      'dailyQuote'
     ])
   },
   methods: {

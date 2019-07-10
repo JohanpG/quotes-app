@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class = 'quote-left'>
+    <div class = 'quote-left' v-on:dblclick="redirectToId">
       <div class = 'quote-image'></div>
       <div class = 'quote-circle'>
         <div class = 'quote-circle-inner'>
@@ -23,8 +23,17 @@
 
 <script>
 export default {
+  methods: {
+    redirectToId () {
+       this.$router.push(
+          {
+            path: '/quotes/' + this.quote._id,
+          })
+        }
+    },
   props: {
     quote: Object
   }
 }
+
 </script>
