@@ -1,13 +1,14 @@
 <template>
   <div class="home-view-container">
     <b-jumbotron>
-      <template slot="header">New Quote</template>
-      <template slot="lead">Specify a new quote.</template>
+      <template slot="header">{{ $t('newQuote') }}</template>
+      <template slot="lead">{{ $t('newQuoteSubtitle') }} </template>
       <hr class="my-4">
 
       <b-form @submit.prevent="handleSubmit">
         <b-card bg-variant="light">
-          <b-form-group id="exampleInputGroup1" label="Author's Name:" label-for="exampleInput1">
+          <b-form-group id="exampleInputGroup1">
+            <b-form-group-label>{{ $t('authorName') }}</b-form-group-label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -15,7 +16,8 @@
               required
               placeholder="Enter Author's Name" />
           </b-form-group>
-          <b-form-group id="exampleInputGroup2" label="To Name:" label-for="exampleInput2">
+          <b-form-group id="exampleInputGroup2">
+            <b-form-group-label>{{ $t('to') }}</b-form-group-label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -23,7 +25,8 @@
               required
               placeholder="Enter To Name" />
           </b-form-group>
-          <b-form-group id="exampleInputGroup3" label="Quote:" label-for="exampleInput3">
+          <b-form-group id="exampleInputGroup3">
+            <b-form-group-label>{{ $t('quote') }}</b-form-group-label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -31,7 +34,8 @@
               required
               placeholder="Enter quote" />
           </b-form-group>
-          <b-form-group id="exampleInputGroup4" label="Quote's Date:" label-for="exampleInput4">
+          <b-form-group id="exampleInputGroup4">
+            <b-form-group-label>{{ $t('quoteDate') }}</b-form-group-label>
             <b-form-input
               id="exampleInput2"
               type="date"
@@ -41,8 +45,8 @@
           </b-form-group>
         </b-card>
         <br>
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="submit" variant="primary">{{ $t('submit') }}</b-button>
+        <b-button type="reset" variant="danger">{{ $t('reset') }}</b-button>
       </b-form>
     </b-jumbotron>
   </div>

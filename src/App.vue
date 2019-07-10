@@ -1,15 +1,42 @@
 <template>
   <div id="app">
+    <div>
+      <button v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">
+          <flag :iso="entry.flag" v-bind:squared=false /> {{entry.title}}
+      </button>
+    </div>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/newQuote">New Quote</router-link> |
-      <router-link to="/quotes">Quotes</router-link> |
+      <router-link to="/">{{ $t('home') }}</router-link> |
+      <router-link to="/newQuote">{{ $t('newQuote') }}</router-link> |
+      <router-link to="/quotes">{{ $t('quotes') }}</router-link> |
     </div>
     <b-container>
       <router-view/>
     </b-container>
   </div>
 </template>
+
+<script>
+    import i18n from '@/plugins/i18n'
+    import FlagIcon from 'vue-flag-icon'
+    export default {
+        name: 'app',
+        data() {
+            return {
+                languages: [
+                    { flag: 'us', language: 'en', title: 'English' },
+                    { flag: 'es', language: 'es', title: 'Español' }
+                ]
+            };
+        },
+        methods: {
+            changeLocale(locale) {
+                i18n.locale = locale;
+            }
+        }
+    }
+</script>
+
 
 <style lang="scss">
 #app {
@@ -29,6 +56,12 @@
     }
   }
 }
+button {
+        padding: 5px;
+        border: 1px solid green;
+        font-size: 12px;
+        margin: 10px;
+    }
 $light-blue: hsl(194, 49%, 73%);
 $dark-blue: hsl(221, 49%, 33%);
 $dark-green: hsl(166, 72%, 28%);

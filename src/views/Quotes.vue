@@ -1,6 +1,6 @@
 <template>
 <div  class = "b-container">
-  <h1>Quotes</h1>
+  <h1>{{ $t('quotes') }}</h1>
   <div class = "row" v-for='(g, groupIndex) in groupedItems' :key="groupIndex">
     <div class = "col-md-5" v-for='(item, index) in g' :key="index">
       <div v-if="index % 2">

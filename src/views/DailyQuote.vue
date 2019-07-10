@@ -3,7 +3,7 @@
   <b-card-group deck>
    <b-card>
    <b-card-title>
-   Today: <h1>{{dailyQuote.validDate}}</h1> The quote of the day is:
+   {{ $t('today') }} : <h1>{{dailyQuote.validDate}}</h1> {{ $t('quoteOfTheDay') }} :
    </b-card-title>
    </b-card>
    </b-card-group>
