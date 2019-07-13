@@ -82,6 +82,7 @@ div.quote-left{
   border-radius: 16px;
   background-color: $dark-blue;
   box-shadow:0px 0px 15px gray;
+  transition: all 0.3s ease-in-out;
   margin-bottom:60px;
 
   div.quote-image{
@@ -110,6 +111,31 @@ div.quote-left{
     text-align:center;
     }
   }
+  .quote-left::after {
+  content: "";
+  border-radius: 5px;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.quote-left:hover {
+  -webkit-transform: scale(1.25, 1.25);
+  transform: scale(1.25, 1.25);
+}
+
+.quote-left:hover::after {
+    opacity: 1;
+}
+
+
 
 div.quote-circle-inner{
   height:35px;
@@ -160,6 +186,7 @@ div.quote-right{
   border-radius: 16px;
   background-color: $dark-green;
   box-shadow:0px 0px 15px gray;
+  transition: all 0.3s ease-in-out;
   margin-bottom:60px;
 
 div.quote-image{
@@ -225,5 +252,29 @@ div.quote-author{
       color:$light-green;
     }
   }
+}
+
+.quote-right::after {
+content: "";
+border-radius: 5px;
+position: absolute;
+z-index: -1;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+opacity: 0;
+-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.quote-right:hover {
+-webkit-transform: scale(1.25, 1.25);
+transform: scale(1.25, 1.25);
+}
+
+.quote-right:hover::after {
+  opacity: 1;
 }
 </style>

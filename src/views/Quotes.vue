@@ -1,5 +1,5 @@
 <template>
-<div  class = "b-container">
+<div  class = "b-container" v-if="allQuotes">
   <h1>{{ $t('quotes') }}</h1>
   <div class = "row" v-for='(g, groupIndex) in groupedItems' :key="groupIndex">
     <div class = "col-md-5" v-for='(item, index) in g' :key="index">
@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     ...mapActions([
-      'addPet',
       'refreshQuotes'
     ]),
     chunk: function(arr, size) {
@@ -54,8 +53,24 @@ export default {
       'allQuotes'
     ])
   },
+  // Server-side only
+ // This will be called by the server renderer automatically
+ serverPrefetch () {
+   // return the Promise from the action
+   // so that the component waits before rendering
+   return  this.refreshQuotes()
+ },
+ // Client-side only
+  mounted () {
+    // If we didn't already do it on the server
+    // we fetch the item (will first show the loading text)
+    if (!this.allQuotes) {
+      this.refreshQuotes()
+      this.chunk(this.allQuotes, 2) // 3 is the number of colums
+    }
+  },
   created: function () {
-    this.refreshQuotes()
+    // this.refreshQuotes()
     // divide into n groups
     // this.chunk(this.allQuotes, Math.ceil(this.allQuotes.length / 3)) // 3 is the number of colums
     this.chunk(this.allQuotes, 2) // 3 is the number of colums
