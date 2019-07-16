@@ -10,6 +10,7 @@ export default {
     state.paginationDetails.currentPage = response.page;
     state.paginationDetails.perPage = response.limit;
     state.paginationDetails.totalItems = response.totalPages;
+    console.log(state.paginationDetails);
 
   },
   getDailyQuote: (state, quote) => {

@@ -7,12 +7,12 @@
   <div class = "row" v-if="groupedItems" v-for='(g, groupIndex) in groupedItems' :key="groupIndex" >
     <div class = "col-md-5" v-for='(item, index) in g' :key="index">
       <div v-if="index % 2">
-        <QuoteLeft
+        <QuoteLeft key="item._id"
           :quote="item"
         />
       </div>
       <div v-else>
-        <QuoteRight
+        <QuoteRight key="item._id"
           :quote="item"
         />
       </div>
@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       loading: true,
-      groupedItems: []
+      groupedItems: [],
+      componentKey: 0,
     }
 
   },
@@ -61,11 +62,17 @@ export default {
       console.log(newArr)
     },
     updatePage: function(page){
-      this.refreshQuotesPaginated(page).catch(error => {
-        console.error(error)
+      this.loading=true
+      this.refreshQuotesPaginated(page)
+      .then(() => {
+        this.chunk(this.allQuotes, 2) // 3 is the number of colums
+        this.loading=false
       })
       // this.$store.dispatch('updatePage', page); console.log("Hit me")
     },
+    forceRerender() {
+      this.componentKey += 1;
+    }
   },
   computed: {
     ...mapState([
@@ -76,8 +83,8 @@ export default {
   created: function () {
     // divide into n groups
     // this.chunk(this.refreshQuotes, Math.ceil(this.refreshQuotes.length / 3)) // 3 is the number of colums
-    // this.refreshQuotesPaginated(this.paginationDetails.currentPage)
-    this.refreshQuotes()
+    // this.refreshQuotes()
+    this.refreshQuotesPaginated(this.paginationDetails.currentPage)
     .then(() => {
       this.chunk(this.allQuotes, 2) // 3 is the number of colums
       this.loading=false

@@ -8,6 +8,6 @@ export default {
   paginationDetails: {
     currentPage: 1,
     perPage: 10,
-    totalItems: 0
+    totalItems: 100
   }
 }

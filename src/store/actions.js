@@ -48,7 +48,7 @@ export default {
     return QuotesAPI.getQuotesPaginated(page)
     .then(response =>{
       console.log(response);
-      commit('getQuotes', response.data);
+      commit('getQuotesPagination', response);
     })
     .catch(error => console.log(error))
     .finally(() => {
