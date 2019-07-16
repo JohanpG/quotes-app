@@ -1,7 +1,10 @@
 <template>
-<div  class = "b-container" v-if="allQuotes">
+<div  class = "b-container" >
   <h1>{{ $t('quotes') }}</h1>
-  <div class = "row" v-for='(g, groupIndex) in groupedItems' :key="groupIndex">
+  <div class="spinner-border text-secondary" role="status" v-if="loading">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class = "row" v-if="groupedItems" v-for='(g, groupIndex) in groupedItems' :key="groupIndex" >
     <div class = "col-md-5" v-for='(item, index) in g' :key="index">
       <div v-if="index % 2">
         <QuoteLeft
@@ -16,11 +19,19 @@
 
     </div>
   </div>
+  <b-pagination
+      v-model="paginationDetails.currentPage"
+      align="center"
+      :total-rows="paginationDetails.totalItems"
+      :per-page="paginationDetails.perPage"
+      @input ="updatePage(paginationDetails.currentPage)"
+    >
+    </b-pagination>
 </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import QuoteLeft from '@/components/QuoteLeft.vue'
 import QuoteRight from '@/components/QuoteRight.vue'
 
@@ -30,11 +41,16 @@ export default {
     QuoteRight
   },
   data() {
-    return {}
+    return {
+      loading: true,
+      groupedItems: []
+    }
+
   },
   methods: {
     ...mapActions([
-      'refreshQuotes'
+      'refreshQuotes',
+      'refreshQuotesPaginated'
     ]),
     chunk: function(arr, size) {
       var newArr = []
@@ -43,37 +59,29 @@ export default {
       }
       this.groupedItems = newArr
       console.log(newArr)
-    }
+    },
+    updatePage: function(page){
+      this.refreshQuotesPaginated(page).catch(error => {
+        console.error(error)
+      })
+      // this.$store.dispatch('updatePage', page); console.log("Hit me")
+    },
   },
   computed: {
-    ...mapGetters([
-      'getAllQuotes'
-    ]),
     ...mapState([
-      'allQuotes'
+      'allQuotes',
+      'paginationDetails'
     ])
   },
-  // Server-side only
- // This will be called by the server renderer automatically
- serverPrefetch () {
-   // return the Promise from the action
-   // so that the component waits before rendering
-   return  this.refreshQuotes()
- },
- // Client-side only
-  mounted () {
-    // If we didn't already do it on the server
-    // we fetch the item (will first show the loading text)
-    if (!this.allQuotes) {
-      this.refreshQuotes()
-      this.chunk(this.allQuotes, 2) // 3 is the number of colums
-    }
-  },
   created: function () {
-    // this.refreshQuotes()
     // divide into n groups
-    // this.chunk(this.allQuotes, Math.ceil(this.allQuotes.length / 3)) // 3 is the number of colums
-    this.chunk(this.allQuotes, 2) // 3 is the number of colums
+    // this.chunk(this.refreshQuotes, Math.ceil(this.refreshQuotes.length / 3)) // 3 is the number of colums
+    // this.refreshQuotesPaginated(this.paginationDetails.currentPage)
+    this.refreshQuotes()
+    .then(() => {
+      this.chunk(this.allQuotes, 2) // 3 is the number of colums
+      this.loading=false
+    })
   }
 }
 </script>

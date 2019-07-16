@@ -8,7 +8,7 @@
       <b-form @submit.prevent="handleSubmit">
         <b-card bg-variant="light">
           <b-form-group id="exampleInputGroup1">
-            <b-form-group-label>{{ $t('authorName') }}</b-form-group-label>
+            <label>{{ $t('authorName') }}</label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -17,7 +17,7 @@
               placeholder="Enter Author's Name" />
           </b-form-group>
           <b-form-group id="exampleInputGroup2">
-            <b-form-group-label>{{ $t('to') }}</b-form-group-label>
+            <label>{{ $t('to') }}</label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -26,7 +26,7 @@
               placeholder="Enter To Name" />
           </b-form-group>
           <b-form-group id="exampleInputGroup3">
-            <b-form-group-label>{{ $t('quote') }}</b-form-group-label>
+            <label>{{ $t('quote') }}</label>
             <b-form-input
               id="exampleInput2"
               type="text"
@@ -35,7 +35,7 @@
               placeholder="Enter quote" />
           </b-form-group>
           <b-form-group id="exampleInputGroup4">
-            <b-form-group-label>{{ $t('quoteDate') }}</b-form-group-label>
+            <label>{{ $t('quoteDate') }}</label>
             <b-form-input
               id="exampleInput2"
               type="date"
@@ -74,8 +74,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'addQuote',
-      'refreshQuotes'
+      'addQuote'
     ]),
     handleSubmit() {
       const { author, to, quote, date } = this.formData
@@ -97,7 +96,6 @@ export default {
     }
   },
   created: function () {
-    this.refreshQuotes()
   }
 }
 </script>

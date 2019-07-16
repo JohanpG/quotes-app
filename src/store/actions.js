@@ -1,3 +1,4 @@
+import QuotesAPI from '@/services/api/QuotesAPI'
 export default {
   addPet: ({ commit }, payload) => {
     commit('appendPet', payload)
@@ -19,7 +20,43 @@ export default {
         // console.log('Success:', response)
       )
   },
-  refreshQuotes: ({ commit }) => {
+  refreshQuotes: ({ commit })  => {
+    return QuotesAPI.getQuotes()
+    .then(quotes =>{
+      console.log(quotes)
+      commit('getQuotes', quotes)
+    })
+    .catch(error => console.log(error))
+    .finally(() => {
+      // wheter error or not remove loading
+      //this.loading=false
+    })
+  },
+  refreshQuoteById: ({ commit }, id)  => {
+    return QuotesAPI.getQuoteById(id)
+    .then(quote =>{
+      console.log(quote)
+      commit('getQuoteId', quote)
+    })
+    .catch(error => console.log(error))
+    .finally(() => {
+      // wheter error or not remove loading
+      //this.loading=false
+    })
+  },
+  refreshQuotesPaginated: ({ commit }, page)  => {
+    return QuotesAPI.getQuotesPaginated(page)
+    .then(response =>{
+      console.log(response);
+      commit('getQuotes', response.data);
+    })
+    .catch(error => console.log(error))
+    .finally(() => {
+      // wheter error or not remove loading
+      //this.loading=false
+    })
+  },
+  refreshQuotes2: ({ commit }) => {
     fetch(process.env.VUE_APP_API_ENDPOINT + '/quotes', {
       method: 'get'
     })
@@ -27,7 +64,7 @@ export default {
         return response.json()
       })
       .then((jsonData) => {
-        console.log(jsonData)
+      //  console.log(jsonData)
         commit('getQuotes', jsonData)
       })
   },

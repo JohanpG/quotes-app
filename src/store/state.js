@@ -3,5 +3,11 @@
 
 export default {
   allQuotes: [],
-  dailyQuote: {}
+  dailyQuote: {},
+  quoteByID: {},
+  paginationDetails: {
+    currentPage: 1,
+    perPage: 10,
+    totalItems: 0
+  }
 }

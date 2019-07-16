@@ -1,5 +1,8 @@
 <template>
   <div>
+  <div class="spinner-border text-secondary" role="status" v-if="loading">
+    <span class="sr-only">Loading...</span>
+  </div>
   <b-card-group deck>
    <b-card>
    <b-card-title>
@@ -15,7 +18,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import QuoteLeft from '@/components/QuoteLeft.vue'
 
 export default {
@@ -23,24 +26,25 @@ export default {
     QuoteLeft
   },
   data() {
-    return {}
+    return {
+      loading: true
+    }
   },
   computed: {
   ...mapState([
     'dailyQuote'
-  ]),
-  ...mapGetters([
-    'getCurrentDate'
-    ])
+  ])
   },
   methods: {
     ...mapActions([
-      'refreshDailyQuote',
-      'refreshQuotes'
+      'refreshDailyQuote'
     ])
   },
   created: function () {
     this.refreshDailyQuote()
+    .then(() => {
+      this.loading=false
+    })
   }
 }
 </script>
