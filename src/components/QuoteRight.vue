@@ -9,6 +9,7 @@
         <div class = 'quote-author'>
           <p>- {{ quote.author }}</p>
           <p> {{ quote.date }}</p>
+          <b-button variant="outline-success" size="sm" v-if="showMore" v-on:click="redirectToId">{{ $t('seeMore') }}</b-button>
         </div>
       </div>
       <div class = 'quote-circle'>
@@ -32,7 +33,8 @@ export default {
       }
   },
   props: {
-    quote: Object
+    quote: Object,
+    showMore: false
   }
 }
 </script>

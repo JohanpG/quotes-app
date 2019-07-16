@@ -9,11 +9,14 @@
       <div v-if="index % 2">
         <QuoteLeft key="item._id" v-if="!loading"
           :quote="item"
+          :showMore= true
+
         />
       </div>
       <div v-else>
         <QuoteRight key="item._id" v-if="!loading"
           :quote="item"
+          :showMore= true
         />
       </div>
 

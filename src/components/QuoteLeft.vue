@@ -16,6 +16,7 @@
           <p>- {{ quote.author }}</p>
           <p> {{ quote.date }}</p>
         </div>
+        <b-button variant="outline-primary" size="sm" v-if="showMore" v-on:click="redirectToId">{{ $t('seeMore') }}</b-button>
       </div>
     </div>
   </div>
@@ -33,7 +34,7 @@ export default {
     },
   props: {
     quote: Object,
-    parentUrl: ""
+    showMore: false
   }
 }
 
