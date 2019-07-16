@@ -32,7 +32,8 @@ export default {
         }
     },
   props: {
-    quote: Object
+    quote: Object,
+    parentUrl: ""
   }
 }
 

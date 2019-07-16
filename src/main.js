@@ -2,6 +2,10 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import i18n from '@/plugins/i18n'
 import FlagIcon from 'vue-flag-icon'
+import SocialSharing from 'vue-social-sharing'
+import Share from 'vue-social-share'
+
+
 
 import 'font-awesome/css/font-awesome.css'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,6 +18,8 @@ import store from './store'
 
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
+Vue.use(SocialSharing);
+Vue.use(Share)
 
 Vue.config.productionTip = false
 

@@ -14,6 +14,25 @@
   <QuoteLeft v-if="quoteByID"
     :quote="quoteByID"
   />
+  <social-sharing v-bind:url= "fullURL"
+                   v-bind:title="$t('shareTittle')"
+                   v-bind:description="$t('shareDescription')"
+                   v-bind:quote="quoteByID.quote"
+                   hashtags="quotes"
+                   twitter-user="quotes-app"
+                   inline-template>
+ <div>
+     <network network="facebook">
+       <i class="fa fa-facebook"></i> Facebook
+     </network>
+     <network network="twitter">
+       <i class="fa fa-twitter"></i> Twitter
+     </network>
+     <network network="whatsapp">
+       <i class="fa fa-whatsapp"></i> Whatsapp
+     </network>
+ </div>
+</social-sharing>
 </div>
 </template>
 <script>
@@ -28,7 +47,8 @@ export default {
   data() {
     return {
       quoteSelected: {},
-      loading: true
+      loading: true,
+      fullURL: document.URL
     }
   },
   computed: {

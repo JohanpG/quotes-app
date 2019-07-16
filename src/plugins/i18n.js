@@ -26,7 +26,10 @@ const messages = {
         quoteEmpty:'Enter To Name',
         quoteDate:"Quote's Date:",
         submit:'Submit',
-        reset:"Reset"
+        reset:"Reset",
+        shareTittle:"Check out this awesome quote!",
+        shareDescription:"This quote was generated on quote app",
+        shareQuote:"Sample Quote"
     },
     'es': {
         welcomeMsg: 'Bienvenido a tu aplicación Vue.js',
@@ -50,7 +53,10 @@ const messages = {
         quoteEmpty:'Ingrese la frase',
         quoteDate:"Fecha de la frase:",
         submit:'Enviar',
-        reset:"Reiniciar"
+        reset:"Reiniciar",
+        shareTittle:"Mira esta increible frase!",
+        shareDescription:"Esta frase fue generada en quote app",
+        shareQuote:"Sample Quote"
     }
 };
 

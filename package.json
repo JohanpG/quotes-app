@@ -16,7 +16,9 @@
     "vue-fontawesome": "latest",
     "vue-flag-icon": "^1.0.6",
     "vue-i18n": "^8.3.1",
-    "axios": "latest"
+    "axios": "latest",
+    "vue-social-sharing": "latest",
+    "vue-social-share": "latest"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
