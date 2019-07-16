@@ -7,12 +7,12 @@
   <div class = "row" v-if="groupedItems" v-for='(g, groupIndex) in groupedItems' :key="groupIndex" >
     <div class = "col-md-5" v-for='(item, index) in g' :key="index">
       <div v-if="index % 2">
-        <QuoteLeft key="item._id"
+        <QuoteLeft key="item._id" v-if="!loading"
           :quote="item"
         />
       </div>
       <div v-else>
-        <QuoteRight key="item._id"
+        <QuoteRight key="item._id" v-if="!loading"
           :quote="item"
         />
       </div>

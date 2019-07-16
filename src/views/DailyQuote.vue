@@ -11,7 +11,7 @@
    </b-card>
    </b-card-group>
    <br>
-    <QuoteLeft
+    <QuoteLeft key="dailyQuote._id" v-if="!loading"
       :quote="dailyQuote"
     />
   </div>
